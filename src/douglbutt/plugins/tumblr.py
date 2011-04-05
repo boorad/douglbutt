@@ -1,4 +1,4 @@
-from .._douglbutt import *
+from _douglbutt import *
 from pymblr import Api, TumblrError
 from ircbot import nm_to_n
 import cgi

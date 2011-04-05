@@ -1,4 +1,4 @@
-from .._douglbutt import *
+from _douglbutt import *
 import os
 import traceback
 from time import localtime, mktime, strptime

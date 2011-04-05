@@ -1,4 +1,4 @@
-from .._douglbutt import *
+from _douglbutt import *
 import marko
 
 class Markov(ButtPlugin):
