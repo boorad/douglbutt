@@ -1,5 +1,5 @@
 import datetime
-from .._douglbutt import *
+from _douglbutt import *
 
 class RepostPlugin(ButtPlugin):
 

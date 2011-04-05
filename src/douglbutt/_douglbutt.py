@@ -228,16 +228,17 @@ def main():
 
     (options, args) = parser.parse_args()
 
-#    if len(args) != 1:
-#        print "Usage: douglputt.py configfile"
-#        exit(1)
+    if len(args) != 1:
+        print "Usage: douglbutt.py configfile"
+        exit(1)
+
+    configfile = "/etc/douglbutt.conf"
+    if len(args) == 1 and args[0]:
+        configfile = args[0]
 
     settings = {}
     config = ConfigParser.ConfigParser()
-    if len(args) > 0:
-        config.read(args[0])
-    else:
-        config.read("/Users/brad/dev/python/douglbutt/douglbutt.conf")
+    config.read(configfile)
 
     for option in config.options("douglbutt"):
         settings[option] = config.get("douglbutt", option)
