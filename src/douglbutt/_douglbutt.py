@@ -81,7 +81,7 @@ class DouglButt(SingleServerIRCBot):
     threads = []
     callbacks = {}
 
-        
+
 
     def _handle_callback(self, func, tid, args, **kwargs):
         try:
@@ -120,7 +120,7 @@ class DouglButt(SingleServerIRCBot):
                 plugin._command_check(c, e, e.target())
             elif method_name == 'on_privmsg':
                 plugin._command_check(c, e, nm_to_n(e.source()))
-            
+
             if hasattr(plugin, method_name):
                 #method = getattr(plugin, method_name)
                 method = getattr(the_class, method_name)
@@ -158,7 +158,7 @@ class DouglButt(SingleServerIRCBot):
 
         self.settings = settings
 
-        SingleServerIRCBot.__init__(self, [(settings['server'], port)], 
+        SingleServerIRCBot.__init__(self, [(settings['server'], port)],
             settings['nick'], settings['user'])
         self.channel = settings['channel']
         self.plugins = []
@@ -208,7 +208,7 @@ class DouglButt(SingleServerIRCBot):
         if self.debug:
             print "Parted %s" % e.target()
         self._hook('on_part', c, e)
-    
+
     def on_kick(self, c, e):
         if self.debug:
             print "%s kicked from %s by %s" % (e.arguments()[0], e.target(), e.source())
@@ -228,13 +228,17 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    if len(args) != 1:
-        print "Usage: douglputt.py configfile"
-        exit(1)
+#    if len(args) != 1:
+#        print "Usage: douglputt.py configfile"
+#        exit(1)
 
-    settings = {} 
+    settings = {}
     config = ConfigParser.ConfigParser()
-    config.read(args[0])
+    if len(args) > 0:
+        config.read(args[0])
+    else:
+        config.read("/Users/brad/dev/python/douglbutt/douglbutt.conf")
+
     for option in config.options("douglbutt"):
         settings[option] = config.get("douglbutt", option)
 

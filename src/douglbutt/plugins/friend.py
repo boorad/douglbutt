@@ -1,5 +1,5 @@
 import time
-from .._douglbutt import *
+from _douglbutt import *
 
 class Friend(ButtPlugin):
 
@@ -18,4 +18,4 @@ class Friend(ButtPlugin):
         self.join_pending = None
 
     def on_kick(self, connection, event):
-        self.join_pending = event.target() 
+        self.join_pending = event.target()
