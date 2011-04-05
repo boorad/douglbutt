@@ -39,7 +39,7 @@ class TwitterPlugin(ButtPlugin):
 
                     if time_posted > localtime(self.last_reply_time):
                         for chname, chobj in self.bot.channels.items():
-                            self.bot.connection.privmsg(chname, 
+                            self.bot.connection.privmsg(chname,
                                 new_text) #.encode('ascii','replace'))
                 self.last_reply_time = mktime(max_time)
 
@@ -67,11 +67,11 @@ class TwitterPlugin(ButtPlugin):
                 self.bot.connection.privmsg(reply_to, "Too long :(")
                 return
             def reply(result):
-                 self.bot.connection.privmsg(reply_to, 
+                 self.bot.connection.privmsg(reply_to,
                     "%s has been quoted to twitter." % user)
             self.bot.set_callback(self.twitter.UpdateStatus, reply,
                 args=[last_said])
-           
+
     def do_untwit(self, message, reply_to):
         now = mktime(localtime(None))
         if self.last_untwit + 60 >= now:
@@ -82,7 +82,7 @@ class TwitterPlugin(ButtPlugin):
             id = timeline[0]['id']
             result = self.twitter.ApiCall("statuses/destroy/%s" % id, "POST", {})
             if type(result) == urllib2.HTTPError or \
-                type(result) == urllib2.URLError: 
+                type(result) == urllib2.URLError:
                 self.bot.connection.privmsg(reply_to, "Fail whale")
                 return
             try:
@@ -131,7 +131,7 @@ class TwitterPlugin(ButtPlugin):
 
                 def process_tweet(result):
                     if type(result) == urllib2.HTTPError or \
-                        type(result) ==  urllib2.URLError: 
+                        type(result) ==  urllib2.URLError:
                         self.bot.connection.privmsg(reply_to, "Fail whale")
                         return
                     try:
@@ -142,7 +142,7 @@ class TwitterPlugin(ButtPlugin):
                     new_text = new_text.encode('utf-8')
                     self.bot.connection.privmsg(reply_to, new_text)
 
-                self.bot.set_callback(self.twitter.ApiCall, process_tweet, 
+                self.bot.set_callback(self.twitter.ApiCall, process_tweet,
                     args=(apipath, "GET", {}))
 
 
