@@ -7,6 +7,13 @@ but I'm ok with it. You can write new plugins pretty simply.
 REQUIREMENTS
 ============
 
+  * python-irclib
+
+Twitter support requires:
+
+  * python-oauth2
+  * python-simplejson
+
 Tumblr support requires:
 
   * [pymblr](http://github.com/lysol/pymblr "pymblr")
